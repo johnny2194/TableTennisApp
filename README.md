@@ -4,6 +4,10 @@ Add tables to the database from models file: `psql -d table_tennis -f table_tenn
 
 Run seeds: `ruby seeds.rb`
 
+
+Create branch:
+`git checkout -b NEW_BRANCH_NAME`
+
 Switch to branch:
 `git checkout BRANCH_NAME`
 
