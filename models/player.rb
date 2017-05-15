@@ -1,5 +1,4 @@
 require_relative('../db/sql_runner')
-require('pry')
 
 class Player
 
@@ -14,8 +13,8 @@ class Player
 
   def save()
     sql = "INSERT INTO players (p_name) VALUES ('#{@p_name}') RETURNING id"
-    players_array = SqlRunner.run(sql)
-    @id = players_array.first['id'].to_i
+    players_array_pg = SqlRunner.run(sql)
+    @id = players_array_pg.first['id'].to_i
   end
 
 end
