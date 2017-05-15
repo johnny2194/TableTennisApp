@@ -72,6 +72,3 @@ game4.save
 game5.save
 game6.save
 game7.save
-
-array = Player.all_sorted_by_wins
-array.each{|player| puts player.p_name}
