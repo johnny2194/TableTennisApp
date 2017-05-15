@@ -19,4 +19,5 @@ def save()
   @id = game_array_pg.first['id'].to_i
 end
 
+
 end
