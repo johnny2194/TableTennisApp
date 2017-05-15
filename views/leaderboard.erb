@@ -1,0 +1,21 @@
+<div id='leaderboard'>
+  
+<h1>LEADERBOARD</h1>
+
+
+<table>
+<tr>
+  <th>Player Name</th>
+  <th>Wins</th> 
+</tr>
+
+<% @players.each do |player| %>
+<tr>
+  <td><%= player.p_name %></td>
+  <td><%= player.wins %></td>
+</tr>
+<% end %>
+</table>
+
+</div>
+
