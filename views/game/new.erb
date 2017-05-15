@@ -1,0 +1,33 @@
+<div id='new-result'>
+  <h1>New Result Details</h1>
+  <form method='post' action='/game/new/result'>
+    <label for='p1-id'>Player 1</label>
+    <select id='p1-id' name='p1_id'>
+      <% @players.each do |player| %>
+      <option value=<%= player.id %>> <%= player.p_name  %> </option>
+      <% end %>
+    </select>
+    <br>
+
+    <label for='p2-id'>Player 2</label>
+    <select id='p2-id' name='p2_id'>
+      <% @players.each do |player| %>
+      <option value=<%= player.id %>> <%= player.p_name  %> </option>
+      <% end %>
+    </select>
+    <br>
+
+    <label for='winner-'>Result</label>
+    <br>
+    <input type="radio" name="winner" value=1>Player 1 <br>
+    <input type="radio" name="winner" value=0 checked>Draw <br>
+    <input type="radio" name="winner" value=-1>Player 2 <br>
+    <br>
+
+    <input type='submit' value='Submit Result'>
+
+  </form>
+
+</div>
+
+
