@@ -10,9 +10,9 @@ get '' do
   redirect '/'
 end
 
-get '/' do 
+get '/' do
   @players = Player.all_sorted_by_wins
-  erb(:'game/leaderboard') 
+  erb(:'game/leaderboard')
 end
 
 # GAME
@@ -37,7 +37,10 @@ post '/game/new/result' do
 redirect '/'
 end
 
-# PLAYER
+not_found do
+  erb(:error)
+end
+  # PLAYER
 
 get '/player/new' do
   erb(:'player/new')
