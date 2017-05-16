@@ -3,10 +3,16 @@
 <h1>All Players</h1>
 <% @players.each do |player| %>
 <p><%= player.p_name %></p>
+<% if @message == 'admin' %>
 <form method='post' action='/admin/player/<%= player.id %>/delete'>
   <input type="submit" value="Delete">
 </form>
 <br>
+<% else %>
+<% end %>
+
+
+
 <% end %>
 
 </div>
