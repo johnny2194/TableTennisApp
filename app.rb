@@ -4,6 +4,7 @@ require('sinatra/contrib/all')
 require_relative('models/player')
 require_relative('models/game')
 
+enable :sessions
 
 get '' do
   redirect '/'
@@ -49,11 +50,37 @@ redirect '/'
 end
 
 get '/player/index' do
+  @message = session[:admin]
   @players = Player.all
   erb(:'player/index')
 end
 
 ##ADMIN
+#LOG IN
+get '/admin/login' do
+erb(:'admin/login')
+end
+
+post '/admin/login' do
+@password = params[:password]
+
+if (@password == '1989')
+  session[:admin] = 'admin'
+  @message = "You now have Admin privileges"
+else
+  @message = "Sorry, incorrect password"
+end
+
+erb(:'admin/login_res')
+end
+
+post "/monstas" do
+  @name = params["name"]
+  store_name("names.txt", @name)
+  session[:message] = "Successfully stored the name #{@name}."
+  redirect "/monstas?name=#{@name}"
+end
+
 #PLAYER
 post '/admin/player/:pid/delete' do
   Player.delete(params[:pid])
