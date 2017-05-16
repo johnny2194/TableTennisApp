@@ -47,3 +47,15 @@ post '/player/new' do
 @new_player.save
 redirect '/'
 end
+
+get '/player/index' do
+  @players = Player.all
+  erb(:'player/index')
+end
+
+##ADMIN
+#PLAYER
+post '/admin/player/:pid/delete' do
+  Player.delete(params[:pid])
+  redirect '/player/index'
+end
