@@ -38,6 +38,11 @@ class Player
     return sorted
   end
 
+  def self.delete(id)
+    sql = "DELETE FROM players WHERE id = #{id}"
+    SqlRunner.run(sql)
+  end
+
   ## Helper
   def self.map_players(sql)
     players_pg = SqlRunner.run(sql)
