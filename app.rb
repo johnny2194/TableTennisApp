@@ -14,6 +14,8 @@ get '/' do
   erb(:'game/leaderboard') 
 end
 
+# GAME
+
 get '/game/new' do
   @players = Player.all
   erb(:'game/new')
@@ -31,5 +33,17 @@ post '/game/new/result' do
   })
 @new_result.save
 
+redirect '/'
+end
+
+# PLAYER
+
+get '/player/new' do
+  erb(:'player/new')
+end
+
+post '/player/new' do
+@new_player = Player.new(params)
+@new_player.save
 redirect '/'
 end
