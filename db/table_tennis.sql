@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS games;
+DROP TABLE IF EXISTS players;
+
+CREATE TABLE players(
+  id SERIAL2 PRIMARY KEY,
+  p_name VARCHAR(255)
+);
+
+CREATE TABLE games(
+  id SERIAL2 PRIMARY KEY,
+  p1_id INT4 REFERENCES players(id) ON DELETE CASCADE,
+  p2_id INT4 REFERENCES players(id) ON DELETE CASCADE,
+  winner INT4 CHECK(winner >= -1 AND winner <= 1)
+);
+
