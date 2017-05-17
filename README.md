@@ -20,15 +20,15 @@ Run seeds: `ruby seeds.rb`
 8. When you are done push your branch to origin
     `git push origin <myNewFeature>`
 9. Go to our project's page in github.
-10. Change to <myNewFeature> branch.
+10. Change to `<myNewFeature>` branch.
 11. Click Pull Request.
-12. Make sure the <base> is "development" and <compare> is <myNewFeature>
+12. Make sure the `<base>` is "development" and `<compare>` is <myNewFeature>
 13. Write comments on what you did or what you changed.
 14. Pull Requests need to be review by someone else. DO NOT MERGE YOUR OWN PULL REQUESTS.
 14. If you are working with someone else in specific areas of the project select the person(s)
   from the right hand menu "Reviewers" and send the Pull Request if that is not the case just
   send it anyone can pick your Pull Request.
-15. Once your Pull Request has been merged delete your <myNewFeature> branch.
+15. Once your Pull Request has been merged delete your `<myNewFeature>` branch.
   `git branch -d <myNewFeature>`
 16. Repeat.  
 
