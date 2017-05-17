@@ -15,13 +15,15 @@ Add your local branch as a branch on remote repo:
  1. `git add .`
  2. `git commit [your message]`
  3. You will see an error, something like:
- ```
- fatal: The current branch BRANCH_NAME has no upstream branch.
+
+
+ ```fatal: The current branch BRANCH_NAME has no upstream branch.
  To push the current branch and set the remote as upstream, use
 
      git push --set-upstream origin BRANCH_NAME
      ```
- 4. execute the `git push --set-upstream origin BRANCH_NAME`. your branch should now be visible on github. 
+
+ 4. execute the `git push --set-upstream origin BRANCH_NAME`. your branch should now be visible on github.
 
 To checkout a remote branch:
 
