@@ -1,89 +1,57 @@
-/* CONTRIBUTE */
+# How to contribute
 
-This is the contribute.md of our project. Great to have you here. Here are a few ways you can help make this project better!
+*Simple contribution guidelines to make open source happy and organized*
 
-# Contribute.md
+Resist being a lazy developer, we can get through this together.
 
-## Team members
+## Project organization
 
-This section introduces the core team members.
+* Branch `master` is always stable and release-ready.
+* Branch `develop` is for development and merged into `master` when stable.
+* Feature branches should be created for adding new features and merged into `develop` when ready.
+* Bug fix branches should be created for fixing bugs and merged into `develop` when ready.
+* See also: [*A successful Git branching model*](http://nvie.com/posts/a-successful-git-branching-model).
 
-## Learn & listen
+## Opening a new issue
 
-This section includes ways to get started with your open source project. Include links to documentation and to different communication channels:
-* Slack:
-* Mailing list:
-* IRC channel:  
-* Blog:         
-* Anything else:  
+**Do not open a duplicate issue!**
 
-## Adding new features
-
-This section includes advice on how to build new features for the project & what kind of process it includes.
-
-* This is how we like people to add new features:         
-* Here are some specifics on the coding style we prefer:   
-* This is how you send your pull request:                  
-* You should include the following tests:                  
-* These are the updates we hope you make to the changelog:
-
-Don’t get discouraged! We estimate that the response time from the
-maintainers is around:
-
-# Bug triage
-
-This sections explains how bug triaging is done for your project. Help beginners by including examples to good bug reports and providing them questions they should look to answer.
-
-* You can help report bugs by filing them here:
-* You can look through the existing bugs here:
-
-* You can help us diagnose and fix existing bugs by asking and providing answers for the following:
-
-  * Is the bug reproducible as explained?   
-  * Is it reproducible in other environments (for instance, on different browsers or devices)?   
-  * Are the steps to reproduce the bug clear? If not, can you describe how you might reproduce it?  
-  * What tags should the bug have?  
-  * Is this bug something you have run into? Would you appreciate it being looked into faster?  
-
-* You can close fixed bugs by testing old tickets to see if they are still happening.
-* You can update our changelog here:
-* You can remove duplicate bug reports by:
+1. Look through existing issues to see if your issue already exists.
+2. If your issue already exists, comment on its thread with any information you have. Even if this is simply to note that you are having the same problem, it is still helpful!
+3. Always *be as descriptive as you can*.
+4. What is the expected behavior? What is the actual behavior? What are the steps to reproduce?
+5. Attach screenshots, videos, GIFs if possible.
 
 
-# Beta testing
+## Submitting a pull request
 
-This section explains if your project needs beta testing. Explain why early releases require heavy testing and how they can help with specially across browsers and on different hardware.
+1. Find an issue to work on, or create a new one. *Avoid duplicates, please check existing issues!*
+2. Clone the repo, or make sure you are synced with the latest changes on `development`.
+3. Create a new branch with a sweet name: `git checkout -b issue_<##>_<description>` or `git checkout -b <myNewFeature>`.
+4. Do some [motherfucking programming](http://programming-motherfucker.com).
+5. Write [unit tests](http://nshipster.com/unit-testing) when applicable.
+6. Keep your code nice and clean by adhering to the coding standards & guidelines below.
+7. Don't break unit tests or functionality.
+8. Update the documentation header comments if needed.
+9. Submit a pull request to the `development` branch.
 
-* For our project you can find the roadmap and features that require
-testing from here:
+**You should submit one pull request per feature!** The smaller the PR, the better your chances are of getting merged. Enormous PRs will likely take enormous amounts of time to review, or they will be rejected.
 
-# Translations
+# Style guidelines
 
-This section includes any instructions or translation needs your project has.
+Style and adherence to conventions is just as important as the code you write. Most of our time is spent reading code, not writing it. *Don't be sloppy.*
 
-* You can help us translate our project here:
+Above all, conform to the existing style of the code in which you are working. When in doubt, refer to the guides below.
 
-# Documentation
+## Ruby style
 
-This section includes any help you need with the documentation and where it can be found. Code needs explanation, and sometimes those who know the code well have trouble explaining it to someone just getting into it.
+The following sets of guidelines compliment each other well and cover nearly everything. In the event of contradictory rules, the order of the guides below denotes their precedence.
 
-* Help us with documentation here
+1. [Ruby Airbnb style guidelines](https://github.com/airbnb/ruby)
 
-# Community
-This section includes ideas on how non-developers can help with the project. Here's a few examples:
+## CSS Style
+  TBD
+## Postgress
+  TBD
 
-* You can help us answer questions our users have here:
-* You can help build and design our website here:
-* You can help write blog posts about the project by:
-* You can help with newsletters and internal communications by:
-
-* Create an example of the project in real world by building something or
-showing what others have built.
-* Write about other people’s projects based on this project. Show how
-it’s used in daily life. Take screenshots and make videos!
-
-
-# Your first bugfix
-This section should help a person get started with their very first bug fix and thinking through the problem.
-
-* If you have further questions, contact:
+Clarity and readability should be prioritized, while redundancy should be avoided. Remember that [verboseness does not necessarily yield clarity].
