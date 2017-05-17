@@ -4,30 +4,35 @@ Add tables to the database from models file: `psql -d table_tennis -f table_tenn
 
 Run seeds: `ruby seeds.rb`
 
+## Submitting a pull request
 
-Create branch:
-`git checkout -b NEW_BRANCH_NAME`
+1. Clone the repo.
+2. Make sure you are synced with the latest changes.
+    `git fetch`
+3. Make sure you have the new changes in your local development brach.
+    `git merge origin/development`
+4. Create a new branch based on the development branch with a sweet name: `git checkout -b <myNewFeature>  development`
+5. Do some [programming](http://programming-motherfucker.com).
+6. Commit often and meaningfully.
+7. Write [TTD](http://) when applicable.
+6. Keep your code nice and clean by adhering to the coding standards & guidelines.
+7. Don't break tests or functionality.
+8. When you are done push your branch to origin
+    `git push origin <myNewFeature>`
+9. Go to our project's page in github.
+10. Change to <myNewFeature> branch.
+11. Click Pull Request.
+12. Make sure the <base> is "development" and <compare> is <myNewFeature>
+13. Write comments on what you did or what you changed.
+14. Pull Requests need to be review by someone else. DO NOT MERGE YOUR OWN PULL REQUESTS.
+14. If you are working with someone else in specific areas of the project select the person(s)
+  from the right hand menu "Reviewers" and send the Pull Request if that is not the case just
+  send it anyone can pick your Pull Request.
+15. Once your Pull Request has been merged delete your <myNewFeature> branch.
+  `git branch -d <myNewFeature>`
+16. Repeat.  
 
-Switch to branch:
-`git checkout BRANCH_NAME`
 
-Add your local branch as a branch on remote repo:
- 1. `git add .`
- 2. `git commit [your message]`
- 3. You will see an error, something like:
- ```
- fatal: The current branch BRANCH_NAME has no upstream branch.
- To push the current branch and set the remote as upstream, use
-
-     git push --set-upstream origin BRANCH_NAME
-     ```
- 4. execute the `git push --set-upstream origin BRANCH_NAME`. your branch should now be visible on github. 
-
-To checkout a remote branch:
-
-1.  `git fetch`
-2.  Get the list of remote branches: `git branch -r`
-3.  Get the required branch: `git checkout NAME_OF_BRANCH`
 
 gems required:
 `check if you have gems: gem list`
