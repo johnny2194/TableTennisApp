@@ -22,7 +22,7 @@ Run seeds: `ruby seeds.rb`
 9. Go to our project's page in github.
 10. Change to `<myNewFeature>` branch.
 11. Click Pull Request.
-12. Make sure the `<base>` is "development" and `<compare>` is <myNewFeature>
+12. Make sure the `<base>` is "development" and `<compare>` is "myNewFeature"
 13. Write comments on what you did or what you changed.
 14. Pull Requests need to be review by someone else. DO NOT MERGE YOUR OWN PULL REQUESTS.
 14. If you are working with someone else in specific areas of the project select the person(s)
