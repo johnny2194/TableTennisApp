@@ -1,39 +1,71 @@
-Create a PGSQL database: `createdb table_tennis`
+# READ ME 
 
-Add tables to the database from models file: `psql -d table_tennis -f table_tennis.sql`
+## Table Tennis App
 
-Run seeds: `ruby seeds.rb`
+We’re still very much in the early stages of development, but are onto something awesome.  We are building a table tennis score / gametracker and are doing this to hone in on our development, design and product skills.   Our vision is to create an open source playground, for future developers in training to grow and experiment with us. Although, our core team for the time being is made up of some of CodeClan’s most curious students.  
 
-## Submitting a pull request
+## Getting Started
 
-1. Clone the repo.
-2. Make sure you are synced with the latest changes.
-    `git fetch`
-3. Make sure you have the new changes in your local development brach.
-    `git merge origin/development`
-4. Create a new branch based on the development branch with a sweet name: `git checkout -b <myNewFeature>  development`
-5. Do some [programming](http://programming-motherfucker.com).
-6. Commit often and meaningfully.
-7. Write [TTD](http://) when applicable.
-6. Keep your code nice and clean by adhering to the coding standards & guidelines.
-7. Don't break tests or functionality.
-8. When you are done push your branch to origin
-    `git push origin <myNewFeature>`
-9. Go to our project's page in github.
-10. Change to `<myNewFeature>` branch.
-11. Click Pull Request.
-12. Make sure the `<base>` is "development" and `<compare>` is "myNewFeature"
-13. Write comments on what you did or what you changed.
-14. Pull Requests need to be review by someone else. DO NOT MERGE YOUR OWN PULL REQUESTS.
-14. If you are working with someone else in specific areas of the project select the person(s)
-  from the right hand menu "Reviewers" and send the Pull Request if that is not the case just
-  send it anyone can pick your Pull Request.
-15. Once your Pull Request has been merged delete your `<myNewFeature>` branch.
-  `git branch -d <myNewFeature>`
-16. Repeat.  
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+## Prerequisites
+
+What things you need to install the software and how to install them
+Give examples
+
+## Installing
+
+A step by step series of examples that tell you have to get a development env running
+Say what the step will be
+Give the example
+
+And repeat
+
+until finished
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+## Break down into end to end tests
+
+Explain what these tests test and why
+
+Give an example
 
 
+## And coding style tests
 
-gems required:
-`check if you have gems: gem list`
-`pg`, `pry`, `sinatra-contrib`, `sinatra`
+Explain what these tests test and why
+Give an example
+
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+Sinatra - The web framework used
+
+## Contributing
+
+Please read [HOWTOCONTRIBUTE.md](https://dummyurl.com) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use SemVer for versioning. For the versions available, see the tags on this repository. --- will we have versioning this stage?
+
+## Authors
+
+Initial contributors 
+See also the list of contributors who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
+Acknowledgments
+
+
