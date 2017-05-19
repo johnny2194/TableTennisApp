@@ -1,12 +1,26 @@
 require_relative('../models/player')
 require_relative('../models/game')
 require_relative('../models/organisation')
+require_relative('../models/group')
 
 codeclan = Organisation.new({
   'o_name' => 'CodeClan'
   })
 
 codeclan.save
+
+cohort11 = Group.new({
+  'g_name' => 'Cohort 11',
+  'org_id' => codeclan.id
+  })
+
+cohort12 = Group.new({
+  'g_name' => 'Cohort 12',
+  'org_id' => codeclan.id
+  })
+
+cohort11.save
+cohort12.save
 
 johnny = Player.new({
   'p_name' => 'Johnny',

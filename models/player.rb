@@ -2,18 +2,20 @@ require_relative('../db/sql_runner')
 
 class Player
 
-  attr_reader :id, :p_name, :primary_org_id
+  attr_reader :id, :p_name, :rating, :picture, :primary_org_id
 
   def initialize(player_hash)
     @id = player_hash['id'].to_i
     @p_name = player_hash['p_name']
+    @rating = player_hash['rating'].to_i
+    @picture = player_hash['picture']
     @primary_org_id = player_hash['primary_org_id'].to_i
   end
 
   ### INSTANCE METHODS
 
   def save()
-    sql = "INSERT INTO players (p_name, primary_org_id) VALUES ('#{@p_name}', #{@primary_org_id}) RETURNING id"
+    sql = "INSERT INTO players (p_name, rating, picture, primary_org_id) VALUES ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}) RETURNING id"
     players_array_pg = SqlRunner.run(sql)
     @id = players_array_pg.first['id'].to_i
   end
