@@ -10,12 +10,13 @@ class Player
     @rating = player_hash['rating'].to_i
     @picture = player_hash['picture']
     @primary_org_id = player_hash['primary_org_id'].to_i
+    @primary_group_id = player_hash['primary_group_id'].to_i
   end
 
   ### INSTANCE METHODS
 
   def save()
-    sql = "INSERT INTO players (p_name, rating, picture, primary_org_id) VALUES ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}) RETURNING id"
+    sql = "INSERT INTO players (p_name, rating, picture, primary_org_id, primary_group_id) VALUES ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}, #{@primary_group_id}) RETURNING id"
     players_array_pg = SqlRunner.run(sql)
     @id = players_array_pg.first['id'].to_i
   end

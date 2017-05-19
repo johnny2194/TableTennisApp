@@ -1,13 +1,19 @@
 DROP TABLE IF EXISTS pl_org_jn;
 DROP TABLE IF EXISTS pl_group_jn;
-DROP TABLE IF EXISTS games CASCADE;
-DROP TABLE IF EXISTS groups CASCADE;
+DROP TABLE IF EXISTS games;
 DROP TABLE IF EXISTS players;
-DROP TABLE IF EXISTS organisations CASCADE;
+DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS organisations;
 
 CREATE TABLE organisations(
   id SERIAL2 PRIMARY KEY,
   o_name VARCHAR(255)
+);
+
+CREATE TABLE groups(
+  id SERIAL2 PRIMARY KEY,
+  g_name VARCHAR(255),
+  org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
 );
 
 CREATE TABLE players(
@@ -15,13 +21,8 @@ CREATE TABLE players(
   p_name VARCHAR(255),
   rating INT4,
   picture VARCHAR(255),
-  primary_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
-);
-
-CREATE TABLE groups(
-  id SERIAL2 PRIMARY KEY,
-  g_name VARCHAR(255),
-  org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
+  primary_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
+  primary_group_id INT4 REFERENCES groups(id) ON DELETE CASCADE
 );
 
 CREATE TABLE games(
@@ -33,6 +34,8 @@ CREATE TABLE games(
   tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(2),
   p1_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
   p2_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
+  p1_group_id INT4 REFERENCES groups(id) ON DELETE CASCADE,
+  p2_group_id INT4 REFERENCES groups(id) ON DELETE CASCADE,
   location_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
 );
 
