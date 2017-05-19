@@ -15,7 +15,7 @@ CREATE TABLE players(
   p_name VARCHAR(255),
   rating INT4,
   picture VARCHAR(255),
-  primary_org INT4 REFERENCES organisations(id) ON DELETE CASCADE
+  primary_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
 );
 
 CREATE TABLE groups(

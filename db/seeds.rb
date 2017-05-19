@@ -1,20 +1,31 @@
 require_relative('../models/player')
 require_relative('../models/game')
+require_relative('../models/organisation')
+
+codeclan = Organisation.new({
+  'o_name' => 'CodeClan'
+  })
+
+codeclan.save
 
 johnny = Player.new({
-  'p_name' => 'Johnny'
+  'p_name' => 'Johnny',
+  'primary_org_id' => codeclan.id
   })
 
 richard = Player.new({
-  'p_name' => 'Richard'
+  'p_name' => 'Richard',
+  'primary_org_id' => codeclan.id
   })
 
 irma = Player.new({
-  'p_name' => 'Irma'
+  'p_name' => 'Irma',
+  'primary_org_id' => codeclan.id
 })
 
 dominic = Player.new({
-  'p_name' => 'Dominic'
+  'p_name' => 'Dominic',
+  'primary_org_id' => codeclan.id
 })
 
 johnny.save
