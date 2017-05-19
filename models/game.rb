@@ -14,7 +14,7 @@ end
   ### INSTANCE METHODS
 
 def save()
-  sql = "INSERT INTO games (p1_id, p2_id, winner) VALUES (#{@p1_id}, #{@p2_id}, #{@winner}) RETURNING id"
+  sql = "INSERT INTO games (p1_id, p2_id) VALUES (#{@p1_id}, #{@p2_id}) RETURNING id"
   game_array_pg = SqlRunner.run(sql)
   @id = game_array_pg.first['id'].to_i
 end
