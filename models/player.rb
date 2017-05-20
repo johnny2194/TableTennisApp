@@ -22,7 +22,14 @@ class Player
   end
 
   def wins()
-    sql = "SELECT COUNT(winner) FROM games WHERE p1_id=#{self.id} AND winner=1 OR p2_id=#{self.id} AND winner=-1"
+    sql = 
+    "SELECT COUNT(id) 
+    FROM games
+    WHERE 
+    p1_score>p2_score AND p1_id=#{self.id} 
+    OR 
+    p2_score>p1_score AND p2_id=#{self.id}"
+
     win_amount_pg = SqlRunner.run(sql)
     win_amount_int = win_amount_pg.first['count'].to_i
     return win_amount_int
