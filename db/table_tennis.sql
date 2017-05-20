@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS pl_org_jn;
-DROP TABLE IF EXISTS pl_group_jn;
+DROP TABLE IF EXISTS pl_org_join;
+DROP TABLE IF EXISTS pl_group_join;
 DROP TABLE IF EXISTS games;
 DROP TABLE IF EXISTS players;
 DROP TABLE IF EXISTS groups;
@@ -39,13 +39,13 @@ CREATE TABLE games(
   location_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
 );
 
-CREATE TABLE pl_group_jn(
+CREATE TABLE pl_group_join(
   p_g_id SERIAL2 PRIMARY KEY,
   p_id INT4 REFERENCES players(id) ON DELETE CASCADE,
   group_id INT4 REFERENCES groups(id) ON DELETE CASCADE
 );
 
-CREATE TABLE pl_org_jn(
+CREATE TABLE pl_org_join(
   id SERIAL2 PRIMARY KEY,
   p_id INT4 REFERENCES players(id) ON DELETE CASCADE,
   org_id INT4 REFERENCES groups(id) ON DELETE CASCADE,

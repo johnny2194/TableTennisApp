@@ -16,7 +16,11 @@ class Player
   ### INSTANCE METHODS
 
   def save()
-    sql = "INSERT INTO players (p_name, rating, picture, primary_org_id, primary_group_id) VALUES ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}, #{@primary_group_id}) RETURNING id"
+    sql = "INSERT INTO players 
+    (p_name, rating, picture, primary_org_id, primary_group_id)
+     VALUES 
+     ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}, #{@primary_group_id}) 
+     RETURNING id"
     players_array_pg = SqlRunner.run(sql)
     @id = players_array_pg.first['id'].to_i
   end

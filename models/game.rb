@@ -21,7 +21,11 @@ class Game
   ### INSTANCE METHODS
 
   def save()
-    sql = "INSERT INTO games (p1_id, p2_id, p1_score, p2_score, p1_org_id, p2_org_id, p1_group_id, p2_group_id, location_id) VALUES (#{@p1_id}, #{@p2_id}, #{@p1_score}, #{@p2_score}, #{@p1_org_id}, #{@p2_org_id}, #{@p1_group_id}, #{@p2_group_id}, #{@location_id}) RETURNING *"
+    sql = "INSERT INTO games 
+    (p1_id, p2_id, p1_score, p2_score, p1_org_id, p2_org_id, p1_group_id, p2_group_id, location_id) 
+    VALUES 
+    (#{@p1_id}, #{@p2_id}, #{@p1_score}, #{@p2_score}, #{@p1_org_id}, #{@p2_org_id}, #{@p1_group_id}, #{@p2_group_id}, #{@location_id}) 
+    RETURNING *"
     game_array_pg = SqlRunner.run(sql)
     @id = game_array_pg.first['id'].to_i
     @tstamp = game_array_pg.first['tstamp']
