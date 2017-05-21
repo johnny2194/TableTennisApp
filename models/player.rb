@@ -153,6 +153,14 @@ class Player
     return streak
   end
 
+  def hot_streak?()
+    if self.win_streak > 5
+      return true
+    else
+      return false
+    end
+  end
+
   ### CLASS METHODS
 
   def self.all()
