@@ -16,13 +16,21 @@ class Player
   ### INSTANCE METHODS
 
   def save()
-    sql = "INSERT INTO players 
+    sql1 = "INSERT INTO players 
     (p_name, rating, picture, primary_org_id, primary_group_id)
      VALUES 
      ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}, #{@primary_group_id}) 
      RETURNING id"
-    players_array_pg = SqlRunner.run(sql)
+    players_array_pg = SqlRunner.run(sql1)
     @id = players_array_pg.first['id'].to_i
+    
+    sql2 = "INSERT INTO pl_group_join 
+    (p_id, group_id) VALUES (#{@id}, #{@primary_group_id}) "
+    SqlRunner.run(sql2)
+
+    sql3 = "INSERT INTO pl_org_join
+    (p_id, org_id) VALUES (#{@id}, #{@primary_org_id})"
+    SqlRunner.run(sql3)
   end
 
   def wins()
@@ -37,6 +45,16 @@ class Player
     win_amount_pg = SqlRunner.run(sql)
     win_amount_int = win_amount_pg.first['count'].to_i
     return win_amount_int
+  end
+
+  def join_group(group)
+    sql = "INSERT INTO pl_group_join (p_id, group_id) VALUES (#{@id}, #{group.id})"
+    SqlRunner.run(sql)
+  end
+
+  def join_org(org)
+    sql = "INSERT INTO pl_org_join (p_id, org_id) VALUES (#{@id}, #{org.id})"
+    SqlRunner.run(sql)
   end
 
   ### CLASS METHODS
