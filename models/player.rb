@@ -41,10 +41,36 @@ class Player
     p1_score>p2_score AND p1_id=#{self.id} 
     OR 
     p2_score>p1_score AND p2_id=#{self.id}"
-
     win_amount_pg = SqlRunner.run(sql)
     win_amount_int = win_amount_pg.first['count'].to_i
     return win_amount_int
+  end
+
+  def losses()
+    sql = 
+    "SELECT COUNT(id) 
+    FROM games
+    WHERE 
+    p1_score<p2_score AND p1_id=#{self.id} 
+    OR 
+    p2_score<p1_score AND p2_id=#{self.id}"
+    loss_amount_pg = SqlRunner.run(sql)
+    loss_amount_int = loss_amount_pg.first['count'].to_i
+    return loss_amount_int
+  end
+
+  def no_games()
+    sql = "SELECT COUNT(id) FROM games 
+    WHERE p1_id=#{self.id}
+    OR p2_id=#{self.id}"
+    no_games_pg = SqlRunner.run(sql)
+    no_games_int = no_games_pg.first['count'].to_i
+    return no_games_int
+  end
+
+  def win_ratio()
+    ratio = ( self.wins().to_f / self.no_games ).round(4) * 100
+    return ratio
   end
 
   def join_group(group)

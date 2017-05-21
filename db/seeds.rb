@@ -1,3 +1,5 @@
+require('pry')
+
 require_relative('../models/player')
 require_relative('../models/game')
 require_relative('../models/organisation')
@@ -148,3 +150,7 @@ game7.save
 
 johnny.join_group(bemo)
 johnny.join_org(codebase)
+
+
+# binding.pry
+# nil
