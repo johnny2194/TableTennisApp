@@ -1,0 +1,34 @@
+<div id='all-players-admin'>
+  
+<h1>Admin: All Players</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rating</th> 
+    <th>Primary Org</th>
+    <th>Primary Group</th>
+    <th>Delete</th>
+    <th>Update</th>
+  </tr>
+  <tr>
+  <% @players.each do |player| %>
+    <td><%= player.p_name %></td>
+    <td><%= player.rating %></td> 
+    <td><%= Organisation.find_name_by_id(player.primary_org_id) %></td>
+    <td><%= Group.find_name_by_id(player.primary_group_id) %></td>
+    <td>
+      <form method='post' action='/admin/player/<%= player.id %>/delete'>
+        <input type="submit" value="Delete">
+      </form>
+  </td>
+  <td>
+      <form method='get' action='/admin/player/<%= player.id %>/update'>
+        <input type="submit" value="Update">
+      </form>
+  </td>
+  </tr>
+  <% end %>
+</table>
+
+</div>

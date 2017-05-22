@@ -18,4 +18,13 @@ class Group
     @id = group_array_pg.first['id'].to_i
   end
 
+  ### CLASS METHODS
+
+  def self.find_name_by_id(id)
+    sql = "SELECT g_name FROM groups WHERE id=#{id}"
+    group_pg = SqlRunner.run(sql)
+    group_name = group_pg.first['g_name']
+    return group_name
+  end
+
 end

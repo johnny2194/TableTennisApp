@@ -2,7 +2,7 @@ require_relative('../db/sql_runner')
 
 class Player
 
-  attr_reader :id, :p_name, :rating, :picture, :primary_org_id
+  attr_reader :id, :p_name, :rating, :picture, :primary_org_id, :primary_group_id
 
   def initialize(player_hash)
     @id = player_hash['id'].to_i
@@ -165,7 +165,7 @@ class Player
 
   def self.all()
     sql = "SELECT * FROM players"
-    Player.map_players(sql)
+    return Player.map_players(sql)
   end
 
   def self.all_sorted_by_wins()
@@ -178,6 +178,11 @@ class Player
   def self.delete(id)
     sql = "DELETE FROM players WHERE id = #{id}"
     SqlRunner.run(sql)
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM players WHERE id = #{id}"
+    return Player.map_players(sql)
   end
 
   ## Helper
