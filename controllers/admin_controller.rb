@@ -3,6 +3,8 @@ require('sinatra/contrib/all')
 
 require_relative('../models/player')
 require_relative('../models/game')
+require_relative('../models/group')
+require_relative('../models/organisation')
 
 enable :sessions
 
@@ -37,5 +39,5 @@ end
 
 post '/admin/player/:pid/delete' do
   Player.delete(params[:pid])
-  redirect '/player/index'
+  redirect 'admin/player/index'
 end

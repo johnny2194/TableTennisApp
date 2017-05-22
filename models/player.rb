@@ -2,7 +2,7 @@ require_relative('../db/sql_runner')
 
 class Player
 
-  attr_reader :id, :p_name, :rating, :picture, :primary_org_id
+  attr_reader :id, :p_name, :rating, :picture, :primary_org_id, :primary_group_id
 
   def initialize(player_hash)
     @id = player_hash['id'].to_i

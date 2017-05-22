@@ -17,4 +17,13 @@ class Organisation
     @id = org_array_pg.first['id'].to_i
   end
 
+  ### CLASS METHODS
+
+  def self.find_name_by_id(id)
+    sql = "SELECT o_name FROM organisations WHERE id=#{id}"
+    org_pg = SqlRunner.run(sql)
+    org_name = org_pg.first['o_name']
+    return org_name
+  end
+
 end
