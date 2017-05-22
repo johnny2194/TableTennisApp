@@ -18,13 +18,13 @@ end
 post '/game/new/result' do
   @p1_id = params[:p1_id].to_i
   @p2_id = params[:p2_id].to_i
-  @winner = params[:winner].to_i
+  # @p1_org_id = params[:]
+  # @p2_org_id =
+  # @p1_group_id =
+  # @p2_group_id =
+  # @location_id =
 
-  @new_result = Game.new({
-    'p1_id' => @p1_id,
-    'p2_id' => @p2_id,
-    'winner' => @winner
-    })
+  @new_result = Game.new(params)
   @new_result.save
   redirect '/'
 end
