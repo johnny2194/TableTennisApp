@@ -138,7 +138,6 @@ class Player
   def win_streak()
     sql = "SELECT * FROM games WHERE p1_id=#{self.id} OR p2_id=#{self.id}"
     games_rb = Player.map_games(sql)
-    games_rb.sort{|x,y| x.tstamp <=> y.tstamp}
 
     streak = 0
     games_rb.each {|game| 
@@ -196,6 +195,7 @@ class Player
   def self.map_games(sql)
     games_pg = SqlRunner.run(sql)
     games_rb = games_pg.map{ |game| Game.new(game)}
+    games_rb.sort{|x,y| x.tstamp <=> y.tstamp}
     return games_rb
   end
 
