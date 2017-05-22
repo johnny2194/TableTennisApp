@@ -10,6 +10,8 @@ require_relative('../models/organisation')
 
 get '/game/new' do
   @players = Player.all
+  @organisations = Organisation.all
+  @groups = Group.all
   erb(:'game/new')
 end
 
