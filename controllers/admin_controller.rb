@@ -37,6 +37,11 @@ get '/admin/player/index' do
   end
 end
 
+get '/admin/player/:pid/update' do
+  @player = Player.find_by_id(params[:pid])
+  erb(:'admin/player/update')
+end
+
 post '/admin/player/:pid/delete' do
   Player.delete(params[:pid])
   redirect 'admin/player/index'

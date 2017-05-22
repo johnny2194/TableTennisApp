@@ -139,7 +139,7 @@ class Player
 
   def self.all()
     sql = "SELECT * FROM players"
-    Player.map_players(sql)
+    return Player.map_players(sql)
   end
 
   def self.all_sorted_by_wins()
@@ -152,6 +152,11 @@ class Player
   def self.delete(id)
     sql = "DELETE FROM players WHERE id = #{id}"
     SqlRunner.run(sql)
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM players WHERE id = #{id}"
+    return Player.map_players(sql)
   end
 
   ## Helper

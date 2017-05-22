@@ -9,6 +9,7 @@
     <th>Primary Org</th>
     <th>Primary Group</th>
     <th>Delete</th>
+    <th>Update</th>
   </tr>
   <tr>
   <% @players.each do |player| %>
@@ -19,6 +20,11 @@
     <td>
       <form method='post' action='/admin/player/<%= player.id %>/delete'>
         <input type="submit" value="Delete">
+      </form>
+  </td>
+  <td>
+      <form method='get' action='/admin/player/<%= player.id %>/update'>
+        <input type="submit" value="Update">
       </form>
   </td>
   </tr>
