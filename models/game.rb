@@ -31,5 +31,29 @@ class Game
     @tstamp = game_array_pg.first['tstamp']
   end
 
+  ### CLASS METHODS
+
+  def self.all()
+    sql = "SELECT * FROM games"
+    return Game.map_games(sql)
+  end
+
+  def self.delete(id)
+    sql = "DELETE FROM games WHERE id = #{id}"
+    SqlRunner.run(sql)
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM gamess WHERE id = #{id}"
+    return Game.map_games(sql)
+  end
+
+  ## Helper
+  def self.map_games(sql)
+    games_pg = SqlRunner.run(sql)
+    games_rb = games_pg.map{ |game| Game.new(game)}
+    games_rb.sort{|x,y| x.tstamp <=> y.tstamp}
+    return games_rb
+  end
 
 end
