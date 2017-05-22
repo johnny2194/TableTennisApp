@@ -1,6 +1,6 @@
 require_relative('../db/sql_runner')
 
-class Organisation 
+class Organisation
 
   attr_reader :id, :o_name
 
@@ -24,6 +24,12 @@ class Organisation
     org_pg = SqlRunner.run(sql)
     org_name = org_pg.first['o_name']
     return org_name
+  end
+
+  def self.all()
+    sql = "SELECT * FROM organisations"
+    result = SqlRunner.run(sql)
+    return result.map {|organisation| Organisation.new(organisation)}
   end
 
 end
