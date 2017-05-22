@@ -16,25 +16,7 @@ get '/game/new' do
 end
 
 post '/game/new/result' do
-  @p1_id = params[:p1_id].to_i
-  @p2_id = params[:p2_id].to_i
-  # @p1_org_id = params[:]
-  # @p2_org_id =
-  # @p1_group_id =
-  # @p2_group_id =
-  # @location_id =
-
   @new_result = Game.new(params)
   @new_result.save
   redirect '/'
 end
-
-
-# p1_score INT4,
-# p2_score INT4,
-# tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(2),
-# p1_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
-# p2_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
-# p1_group_id INT4 REFERENCES groups(id) ON DELETE CASCADE,
-# p2_group_id INT4 REFERENCES groups(id) ON DELETE CASCADE,
-# location_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
