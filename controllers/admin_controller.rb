@@ -11,7 +11,7 @@ enable :sessions
 ##ADMIN
 #LOG IN
 get '/admin/login' do
-  erb(:'admin/login')
+  erb(:'admin/login', :layout => :layout_admin)
 end
 
 post '/admin/login' do
@@ -22,7 +22,7 @@ post '/admin/login' do
   else
     @message = "Sorry, incorrect password"
   end
-  erb(:'admin/login_res')
+  erb(:'admin/login_res', :layout => :layout_admin)
 end
 
 #PLAYER
@@ -31,18 +31,26 @@ get '/admin/player/index' do
   @players = Player.all
 
   if (session[:admin] = 'admin')
-    erb(:'admin/player/index')      
+    erb(:'admin/player/index', :layout => :layout_admin)      
   else
     redirect '/admin/login'
   end
 end
 
 get '/admin/player/:pid/update' do
-  @player = Player.find_by_id(params[:pid])
-  erb(:'admin/player/update')
+  @player = Player.find_by_id(params[:pid])  
+  if (session[:admin] = 'admin')
+    erb(:'admin/player/update', :layout => :layout_admin)
+  else
+    redirect '/admin/login'
+  end
 end
 
 post '/admin/player/:pid/delete' do
-  Player.delete(params[:pid])
-  redirect 'admin/player/index'
+  if (session[:admin] = 'admin')
+    Player.delete(params[:pid])
+    redirect 'admin/player/index'
+  else
+    redirect '/admin/login'
+  end
 end
