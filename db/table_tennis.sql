@@ -78,7 +78,7 @@ CREATE TABLE pl_org_join(
   org_id INT4 REFERENCES groups(id) ON DELETE CASCADE
 );
 
-CREATE TRIGGER trigger_one 
+CREATE TRIGGER determine_winner 
 BEFORE INSERT ON games
 FOR EACH ROW 
 EXECUTE PROCEDURE calculate_winner();
