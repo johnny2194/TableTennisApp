@@ -26,10 +26,8 @@ post '/admin/login' do
 end
 
 #PLAYER
-
 get '/admin/player/index' do
   @players = Player.all
-
   if (session[:admin] = 'admin')
     erb(:'admin/player/index', :layout => :layout_admin)      
   else
@@ -54,3 +52,13 @@ post '/admin/player/:pid/delete' do
     redirect '/admin/login'
   end
 end
+
+#GAME
+get '/admin/game/index' do
+  @games = Game.all
+    if (session[:admin] = 'admin')
+      erb(:'admin/game/index', :layout => :layout_admin)      
+    else
+      redirect '/admin/login'
+    end
+  end
