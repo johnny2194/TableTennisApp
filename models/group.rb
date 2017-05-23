@@ -27,4 +27,10 @@ class Group
     return group_name
   end
 
+  def self.all()
+    sql = "SELECT * FROM groups"
+    result = SqlRunner.run(sql)
+    return result.map {|group| Group.new(group)}
+  end
+
 end

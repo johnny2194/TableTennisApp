@@ -121,7 +121,7 @@ class Player
     return (total_diff.to_f/total_games).round(1)
   end
 
-  def best_score_diff
+  def best_score_diff()
     sql = "SELECT * FROM games WHERE p1_id=#{self.id} OR p2_id=#{self.id}"
     games_rb = Player.map_games(sql)
     best_game = 0
@@ -133,6 +133,31 @@ class Player
       best_game = diff if diff > best_game 
     }
     return best_game
+  end
+
+  def win_streak()
+    sql = "SELECT * FROM games WHERE p1_id=#{self.id} OR p2_id=#{self.id}"
+    games_rb = Player.map_games(sql)
+
+    streak = 0
+    games_rb.each {|game| 
+      if (game.p1_id == self.id && game.p1_score>game.p2_score)
+        streak += 1
+      elsif (game.p2_id == self.id && game.p2_score>game.p1_score)
+        streak += 1
+      else
+        streak = 0
+      end
+    }
+    return streak
+  end
+
+  def hot_streak?()
+    if self.win_streak > 5
+      return true
+    else
+      return false
+    end
   end
 
   ### CLASS METHODS
@@ -170,6 +195,7 @@ class Player
   def self.map_games(sql)
     games_pg = SqlRunner.run(sql)
     games_rb = games_pg.map{ |game| Game.new(game)}
+    games_rb.sort{|x,y| x.tstamp <=> y.tstamp}
     return games_rb
   end
 
