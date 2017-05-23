@@ -11,15 +11,15 @@ CREATE OR REPLACE FUNCTION calculate_winner()
 RETURNS TRIGGER AS $d$
 BEGIN
 IF NEW.p1_score > NEW.p2_score THEN
-   NEW.winner = NEW.p1_id;
+   NEW.winner_id = NEW.p1_id;
 END IF;
 
 IF NEW.p1_score < NEW.p2_score THEN
-  NEW.winner = NEW.p2_id;
+  NEW.winner_id = NEW.p2_id;
 END IF;
 
 IF NEW.p1_score = NEW.p2_score THEN
- NEW.winner = 0;
+ NEW.winner_id = 0;
 END IF;
 
 RETURN NEW;
@@ -57,7 +57,7 @@ CREATE TABLE games(
   p2_id INT4 REFERENCES players(id) ON DELETE CASCADE,
   p1_score INT4,
   p2_score INT4,
-  winner INT4,
+  winner_id INT4,
   tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(2),
   p1_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
   p2_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
