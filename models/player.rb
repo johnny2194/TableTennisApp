@@ -184,6 +184,13 @@ class Player
     return Player.map_players(sql)
   end
 
+  def self.find_name_by_id(id)
+    sql = "SELECT p_name FROM players WHERE id=#{id}"
+    play_pg = SqlRunner.run(sql)
+    play_name = play_pg.first['p_name']
+    return play_name
+  end
+
   ## Helper
   def self.map_players(sql)
     players_pg = SqlRunner.run(sql)
