@@ -5,8 +5,8 @@
 
     <label for="location-id">Location</label>
     <select id='location-id' name='location_id'>
-      <% @organisations.each do |organisation| %>
-        <option value=<%= organisation.id %>> <%= organisation.o_name  %> </option>
+      <% @locations.each do |location| %>
+        <option value=<%= location.id %>> <%= location.l_name  %> </option>
       <% end %>
     </select>
 

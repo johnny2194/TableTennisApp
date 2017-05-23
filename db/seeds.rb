@@ -4,7 +4,14 @@ require_relative('../models/player')
 require_relative('../models/game')
 require_relative('../models/organisation')
 require_relative('../models/group')
+require_relative('../models/location')
 require_relative('../models/pl_group_join')
+
+loc_codeclan = Location.new({
+  'l_name' => 'CodeClan Location'
+  })
+
+loc_codeclan.save
 
 codeclan = Organisation.new({
   'o_name' => 'CodeClan'
@@ -71,7 +78,7 @@ game1 = Game.new({
   'p2_org_id' => codeclan.id,
   'p1_group_id' => cohort12.id,
   'p2_group_id' => cohort12.id,
-  'location_id' => codeclan.id
+  'location_id' => loc_codeclan.id
   })
 game2 = Game.new({
   'p1_id' => johnny.id,
@@ -82,7 +89,7 @@ game2 = Game.new({
   'p2_org_id' => codeclan.id,
   'p1_group_id' => cohort12.id,
   'p2_group_id' => cohort12.id,
-  'location_id' => codeclan.id
+  'location_id' => loc_codeclan.id
   })
 game3 = Game.new({
   'p1_id' => richard.id,
@@ -93,7 +100,7 @@ game3 = Game.new({
   'p2_org_id' => codeclan.id,
   'p1_group_id' => cohort12.id,
   'p2_group_id' => cohort12.id,
-  'location_id' => codeclan.id
+  'location_id' => loc_codeclan.id
   })
 game4 = Game.new({
   'p1_id' => dominic.id,
@@ -104,7 +111,7 @@ game4 = Game.new({
   'p2_org_id' => codeclan.id,
   'p1_group_id' => cohort11.id,
   'p2_group_id' => cohort12.id,
-  'location_id' => codeclan.id
+  'location_id' => loc_codeclan.id
   })
 game5 = Game.new({
   'p1_id' => dominic.id,
@@ -115,7 +122,7 @@ game5 = Game.new({
   'p2_org_id' => codeclan.id,
   'p1_group_id' => cohort11.id,
   'p2_group_id' => cohort12.id,
-  'location_id' => codeclan.id
+  'location_id' => loc_codeclan.id
   })
 game6 = Game.new({
   'p1_id' => richard.id,
@@ -126,7 +133,7 @@ game6 = Game.new({
   'p2_org_id' => codeclan.id,
   'p1_group_id' => cohort12.id,
   'p2_group_id' => cohort11.id,
-  'location_id' => codeclan.id
+  'location_id' => loc_codeclan.id
   })
 game7 = Game.new({
   'p1_id' => johnny.id,
@@ -137,7 +144,7 @@ game7 = Game.new({
   'p2_org_id' => codeclan.id,
   'p1_group_id' => cohort12.id,
   'p2_group_id' => cohort11.id,
-  'location_id' => codeclan.id
+  'location_id' => loc_codeclan.id
   })
 
 game1.save
