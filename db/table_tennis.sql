@@ -42,7 +42,7 @@ CREATE TABLE games(
   p2_org_id INT4 REFERENCES organisations(id) ON DELETE CASCADE,
   p1_group_id INT4 REFERENCES groups(id) ON DELETE CASCADE,
   p2_group_id INT4 REFERENCES groups(id) ON DELETE CASCADE,
-  location_id INT4 REFERENCES organisations(id) ON DELETE CASCADE
+  location_id INT4 REFERENCES locations(id) ON DELETE CASCADE
 );
 
 CREATE TABLE pl_group_join(
