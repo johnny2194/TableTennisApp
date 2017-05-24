@@ -67,13 +67,9 @@ RETURNS TRIGGER AS $d$
 BEGIN
 IF NEW.p1_score > NEW.p2_score THEN
    NEW.winner_id = NEW.p1_id;
-END IF;
-
-IF NEW.p1_score < NEW.p2_score THEN
+ELSIF NEW.p1_score < NEW.p2_score THEN
   NEW.winner_id = NEW.p2_id;
-END IF;
-
-IF NEW.p1_score = NEW.p2_score THEN
+ELSE
  NEW.winner_id = 0;
 END IF;
 
