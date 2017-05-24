@@ -1,30 +1,14 @@
 DROP TABLE IF EXISTS pl_org_join CASCADE;
 DROP TABLE IF EXISTS pl_group_join CASCADE;
 DROP TABLE IF EXISTS games CASCADE;
-DROP FUNCTION calculate_winner();
+DROP FUNCTION IF EXISTS calculate_winner();
+DROP FUNCTION IF EXISTS find_primary_org();
 DROP TABLE IF EXISTS players CASCADE;
 DROP TABLE IF EXISTS groups CASCADE;
 DROP TABLE IF EXISTS organisations;
 DROP TABLE IF EXISTS locations;
 
-CREATE OR REPLACE FUNCTION calculate_winner()
-RETURNS TRIGGER AS $d$
-BEGIN
-IF NEW.p1_score > NEW.p2_score THEN
-   NEW.winner_id = NEW.p1_id;
-END IF;
 
-IF NEW.p1_score < NEW.p2_score THEN
-  NEW.winner_id = NEW.p2_id;
-END IF;
-
-IF NEW.p1_score = NEW.p2_score THEN
- NEW.winner_id = 0;
-END IF;
-
-RETURN NEW;
-END;
-$d$ LANGUAGE plpgsql;
 
 CREATE TABLE locations(
   id SERIAL2 PRIMARY KEY,
@@ -78,7 +62,37 @@ CREATE TABLE pl_org_join(
   org_id INT4 REFERENCES groups(id) ON DELETE CASCADE
 );
 
+CREATE OR REPLACE FUNCTION calculate_winner()
+RETURNS TRIGGER AS $d$
+BEGIN
+IF NEW.p1_score > NEW.p2_score THEN
+   NEW.winner_id = NEW.p1_id;
+END IF;
+
+IF NEW.p1_score < NEW.p2_score THEN
+  NEW.winner_id = NEW.p2_id;
+END IF;
+
+IF NEW.p1_score = NEW.p2_score THEN
+ NEW.winner_id = 0;
+END IF;
+
+RETURN NEW;
+END;
+$d$ LANGUAGE plpgsql;
+
+-- CREATE OR REPLACE FUNCTION find_primary_org()
+-- RETURNS INT4 AS $d$
+-- BEGIN
+
+-- SELECT p1_id FROM games WHERE id = 1;
+-- RETURN p1_id;
+-- END;
+-- $d$ LANGUAGE plpgsql;
+
 CREATE TRIGGER determine_winner 
 BEFORE INSERT ON games
 FOR EACH ROW 
 EXECUTE PROCEDURE calculate_winner();
+
+-- SELECT find_primary_org()
