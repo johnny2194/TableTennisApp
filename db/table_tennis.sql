@@ -79,30 +79,29 @@ CREATE OR REPLACE FUNCTION find_primaries()
 RETURNS TRIGGER AS $d$
 DECLARE 
 p1_found_org_id INT4 := (
-SELECT primary_org_id 
-FROM players 
-WHERE players.id = NEW.p1_id
+  SELECT primary_org_id 
+  FROM players 
+  WHERE players.id = NEW.p1_id
 );
 p2_found_org_id INT4 := (
-SELECT primary_org_id 
-FROM players 
-WHERE players.id = NEW.p2_id
+  SELECT primary_org_id 
+  FROM players 
+  WHERE players.id = NEW.p2_id
 );
 p1_found_group_id INT4 := (
-SELECT primary_group_id 
-FROM players 
-WHERE players.id = NEW.p1_id
+  SELECT primary_group_id 
+  FROM players 
+  WHERE players.id = NEW.p1_id
 );
 p2_found_group_id INT4 := (
-SELECT primary_group_id 
-FROM players 
-WHERE players.id = NEW.p2_id
+  SELECT primary_group_id 
+  FROM players 
+  WHERE players.id = NEW.p2_id
 );
 
 BEGIN
 NEW.p1_org_id = p1_found_org_id;
 NEW.p2_org_id = p2_found_org_id;
-
 NEW.p1_group_id = p1_found_group_id;
 NEW.p2_group_id = p2_found_group_id;
 
