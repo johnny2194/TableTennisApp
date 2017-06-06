@@ -1,8 +1,8 @@
 Create a PGSQL database: `createdb table_tennis`
 
-Add tables to the database from models file: `psql -d table_tennis -f table_tennis.sql`
+Add tables to the database from models file: `psql -d table_tennis -f db/table_tennis.sql`
 
-Run seeds: `ruby seeds.rb`
+Run seeds: `db/ruby seeds.rb`
 
 ## Submitting a pull request
 

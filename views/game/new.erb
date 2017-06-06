@@ -1,12 +1,12 @@
 <div id='new-result'>
 
-  <h1>New Result Details</h1>
+  <h1>New Game Details</h1>
   <form method='post' action='/game/new/result'>
 
     <label for="location-id">Location</label>
     <select id='location-id' name='location_id'>
-      <% @organisations.each do |organisation| %>
-        <option value=<%= organisation.id %>> <%= organisation.o_name  %> </option>
+      <% @locations.each do |location| %>
+        <option value=<%= location.id %>> <%= location.l_name  %> </option>
       <% end %>
     </select>
 
@@ -22,20 +22,6 @@
 
       <label for="p1-score">Score</label>
       <input id="p1-score" type="number" min="0" steps="1" name="p1_score" value="0">
-
-      <label for="p1-org-id">Organisation</label>
-      <select id='p1-org-id' name='p1_org_id'>
-        <% @organisations.each do |organisation| %>
-          <option value=<%= organisation.id %>><%= organisation.o_name %></option>
-        <% end %>
-      </select>
-
-      <label for="p1-group-id">Group</label>
-      <select id='p1-group-id' name='p1_group_id'>
-        <% @groups.each do |group| %>
-          <option value=<%= group.id %>><%= group.g_name %></option>
-        <% end %>
-      </select>
     </fieldset>
 
     <fieldset>
@@ -50,20 +36,6 @@
 
       <label for="p2-score">Score</label>
       <input id="p2-score" type="number" min="0" steps="1" name="p2_score" value="0">
-
-      <label for="p2-org-id">Organisation</label>
-      <select id='p2-org-id' name='p2_org_id'>
-        <% @organisations.each do |organisation| %>
-          <option value=<%= organisation.id %>><%= organisation.o_name %></option>
-        <% end %>
-      </select>
-
-      <label for="p2-group-id">Group</label>
-      <select id='p2-group-id' name='p2_group_id'>
-        <% @groups.each do |group| %>
-          <option value=<%= group.id %>><%= group.g_name %></option>
-        <% end %>
-      </select>
     </fieldset>
 
 
