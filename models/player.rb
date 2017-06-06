@@ -181,7 +181,7 @@ class Player
 
   def self.find_by_id(id)
     sql = "SELECT * FROM players WHERE id = #{id}"
-    return Player.map_players(sql)
+    return Player.map_players(sql)[0]
   end
 
   def self.find_name_by_id(id)

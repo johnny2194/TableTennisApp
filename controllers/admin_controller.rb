@@ -36,12 +36,20 @@ get '/admin/player/index' do
 end
 
 get '/admin/player/:pid/update' do
-  @player = Player.find_by_id(params[:pid])  
+  @player = Player.find_by_id(params[:pid])
+  @orgs = Organisation.all()
+  @groups = Group.all()  
   if (session[:admin] = 'admin')
     erb(:'admin/player/update', :layout => :layout_admin)
   else
     redirect '/admin/login'
   end
+end
+
+post '/admin/player/:pid/update' do
+  @player = Player.new(params)
+  @player.update #need to write this method and needs to update join tables
+  redirect '/admin/player/index'
 end
 
 post '/admin/player/:pid/delete' do
