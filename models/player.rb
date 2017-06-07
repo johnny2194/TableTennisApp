@@ -33,6 +33,22 @@ class Player
     SqlRunner.run(sql3)
   end
 
+  def update()
+    sql1 = "UPDATE players SET (p_name, rating, picture, primary_org_id, primary_group_id) = ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}, #{@primary_group_id}) WHERE id = #{self.id}"
+    SqlRunner.run(sql1)
+
+#this may need to also delete the old records? what are we using the old joins for? 
+#it definitely needs to update rather than save new joins with new ids of below
+
+  sql2 = "INSERT INTO pl_group_join 
+  (p_id, group_id) VALUES (#{@id}, #{@primary_group_id}) "
+  SqlRunner.run(sql2)
+
+  sql3 = "INSERT INTO pl_org_join
+  (p_id, org_id) VALUES (#{@id}, #{@primary_org_id})"
+  SqlRunner.run(sql3)
+  end
+
   def join_group(group)
     sql = "INSERT INTO pl_group_join (p_id, group_id) VALUES (#{@id}, #{group.id})"
     SqlRunner.run(sql)

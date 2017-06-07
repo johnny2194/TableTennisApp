@@ -46,9 +46,10 @@ get '/admin/player/:pid/update' do
   end
 end
 
-post '/admin/player/:pid/update' do
+post '/admin/player/:id/update' do
   @player = Player.new(params)
-  @player.update #need to write this method and needs to update join tables
+  @player.update() 
+  #need to rewrite this method and needs to update/delete? join tables
   redirect '/admin/player/index'
 end
 
@@ -63,7 +64,7 @@ end
 
 #GAME
 get '/admin/game/index' do
-  @games = Game.all
+  @games = Game.all()
     if (session[:admin] = 'admin')
       erb(:'admin/game/index', :layout => :layout_admin)      
     else

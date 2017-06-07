@@ -6,9 +6,9 @@
     <label for='player-name'>Name:</label>
     <input required type='text' name='p_name' value='<%= @player.p_name %>'>
     <br>
-
+<!-- needs to autofill with current values for both selects -->
     <label for='player-primary-org'>Primary Organisation:</label>
-    <select name='o_name'>
+    <select name='primary_org_id'>
       <%  @orgs.each do |org| %>
       <option value='<%= org.id %>'><%= org.o_name %></option>
       <% end %> 
@@ -16,12 +16,17 @@
     <br>
 
     <label for='player-primary-group'>Primary Group:</label>
-    <select name="g_name">
+    <select name="primary_group_id">
       <% @groups.each do |group| %>
       <option value='<%= group.id %>'><%= group.g_name  %></option>
       <% end %>
     </select>
     <br>
+
+  <input hidden type="text" name="rating" value:<%= @player.rating %>>
+
+  <input hidden type="text" name="picture" value:<%= @player.picture %>>
+
 
    <input type='submit' value='Update Player'>
   </form>
