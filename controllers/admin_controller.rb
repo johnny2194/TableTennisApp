@@ -70,4 +70,13 @@ get '/admin/game/index' do
     else
       redirect '/admin/login'
     end
+end
+
+post '/admin/game/:gid/delete' do
+  if (session[:admin] = 'admin')
+    Game.delete(params[:gid])
+    redirect 'admin/game/index'
+  else
+    redirect '/admin/login'
   end
+end

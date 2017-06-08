@@ -10,7 +10,7 @@
     <th>P1 Score</th>
     <th>P2 Score</th>
     <th>Delete</th>
-    <th>Update</th>
+    <!-- <th>Update</th> -->
   </tr>
   <tr>
   <% @games.each do |game| %>
@@ -24,11 +24,11 @@
         <input type="submit" value="Delete">
       </form>
   </td>
-  <td>
+  <!-- <td>
       <form method='get' action='/admin/game/<%= game.id %>/update'>
         <input type="submit" value="Update">
       </form>
-  </td>
+  </td> -->
   </tr>
   <% end %>
 </table>
