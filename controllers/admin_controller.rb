@@ -72,6 +72,25 @@ get '/admin/game/index' do
     end
 end
 
+get '/admin/game/:gid/update' do
+  @game = Game.find_by_id(params[:gid])
+  @player1 = Player.find_by_id(@game.p1_id)
+  @player2 = Player.find_by_id(@game.p2_id)
+  if (session[:admin] = 'admin')
+    erb(:'admin/game/update', :layout => :layout_admin)
+  else
+    redirect '/admin/login'
+  end
+end
+
+post '/admin/game/:gid/update' do
+  @game = Game.find_by_id(params[:gid])
+  @game.p1_score = params[:p1_score].to_i
+  @game.p2_score = params[:p2_score].to_i 
+  @game.update() 
+  redirect '/admin/game/index'
+end
+
 post '/admin/game/:gid/delete' do
   if (session[:admin] = 'admin')
     Game.delete(params[:gid])

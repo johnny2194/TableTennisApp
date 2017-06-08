@@ -31,6 +31,11 @@ class Game
     @tstamp = game_array_pg.first['tstamp']
   end
 
+  def update()
+    sql = "UPDATE games SET (p1_id, p2_id, p1_score, p2_score, p1_org_id, p2_org_id, p1_group_id, p2_group_id, location_id) =  (#{@p1_id}, #{@p2_id}, #{@p1_score}, #{@p2_score}, #{@p1_org_id}, #{@p2_org_id}, #{@p1_group_id}, #{@p2_group_id}, #{@location_id}) WHERE id = #{self.id}" 
+    SqlRunner.run(sql)
+  end
+
   ### CLASS METHODS
 
   def self.all()
@@ -44,8 +49,8 @@ class Game
   end
 
   def self.find_by_id(id)
-    sql = "SELECT * FROM gamess WHERE id = #{id}"
-    return Game.map_games(sql)
+    sql = "SELECT * FROM games WHERE id = #{id}"
+    return Game.map_games(sql).first
   end
 
   ## Helper
