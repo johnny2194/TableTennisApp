@@ -6,12 +6,15 @@
     <label for='player-name'>Name:</label>
     <input required type='text' name='p_name' value='<%= @player.p_name %>'>
     <br>
-<!-- needs to autofill with current values for both selects -->
 <!-- use radio buttons to only select from previously added orgs/groups -->
     <label for='player-primary-org'>Primary Organisation:</label>
     <select name='primary_org_id'>
       <%  @orgs.each do |org| %>
-      <option value='<%= org.id %>'><%= org.o_name %></option>
+      <option 
+      <% if @player.primary_org_id == org.id %>
+        selected
+      <% end %> 
+      value='<%= org.id %>'><%= org.o_name %></option>
       <% end %> 
     </select>
     <br>
@@ -19,7 +22,11 @@
     <label for='player-primary-group'>Primary Group:</label>
     <select name="primary_group_id">
       <% @groups.each do |group| %>
-      <option value='<%= group.id %>'><%= group.g_name  %></option>
+      <option 
+      <% if @player.primary_group_id == group.id %>
+        selected
+      <% end %>
+      value='<%= group.id %>'><%= group.g_name  %></option>
       <% end %>
     </select>
     <br>
