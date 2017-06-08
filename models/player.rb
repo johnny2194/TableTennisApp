@@ -36,17 +36,23 @@ class Player
   def update()
     sql1 = "UPDATE players SET (p_name, rating, picture, primary_org_id, primary_group_id) = ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}, #{@primary_group_id}) WHERE id = #{self.id}"
     SqlRunner.run(sql1)
+#checks if row already exists
+    sql2 = "SELECT * FROM pl_group_join WHERE p_id = #{self.id} AND group_id = #{self.primary_group_id}"
+    previous_groups_pg = SqlRunner.run(sql2)
 
-#this may need to also delete the old records? what are we using the old joins for? 
-#it definitely needs to update rather than save new joins with new ids of below
+    sql3 = "INSERT INTO pl_group_join 
+    (p_id, group_id) VALUES (#{@id}, #{@primary_group_id})"
+#only inserts if it doesn't exist:
+    SqlRunner.run(sql3) if (previous_groups_pg.first == nil)
 
-  sql2 = "INSERT INTO pl_group_join 
-  (p_id, group_id) VALUES (#{@id}, #{@primary_group_id}) "
-  SqlRunner.run(sql2)
+#checks if row already exists
+    sql4 = "SELECT * FROM pl_org_join WHERE p_id = #{self.id} AND org_id = #{self.primary_org_id}"
+    previous_orgs_pg = SqlRunner.run(sql4)
 
-  sql3 = "INSERT INTO pl_org_join
-  (p_id, org_id) VALUES (#{@id}, #{@primary_org_id})"
-  SqlRunner.run(sql3)
+    sql5 = "INSERT INTO pl_org_join
+    (p_id, org_id) VALUES (#{@id}, #{@primary_org_id})"
+#only inserts if it doesn't exist:    
+    SqlRunner.run(sql5) if (previous_orgs_pg.first == nil)
   end
 
   def join_group(group)

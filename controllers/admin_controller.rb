@@ -49,7 +49,7 @@ end
 post '/admin/player/:id/update' do
   @player = Player.new(params)
   @player.update() 
-  #need to rewrite this method and needs to update/delete? join tables
+  #make previous page only show past added org/groups of the player, not all available as in future that list may be too long, and have another screen to add a 'new' org/group that displays all available and can delete from those that already exist
   redirect '/admin/player/index'
 end
 

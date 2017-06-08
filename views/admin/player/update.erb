@@ -7,6 +7,7 @@
     <input required type='text' name='p_name' value='<%= @player.p_name %>'>
     <br>
 <!-- needs to autofill with current values for both selects -->
+<!-- use radio buttons to only select from previously added orgs/groups -->
     <label for='player-primary-org'>Primary Organisation:</label>
     <select name='primary_org_id'>
       <%  @orgs.each do |org| %>
