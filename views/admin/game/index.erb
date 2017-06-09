@@ -18,7 +18,7 @@
     <td><%= Player.find_name_by_id(game.p1_id) %></td>
     <td><%= Player.find_name_by_id(game.p2_id) %></td> 
     <td><%= game.p1_score %></td>
-    <td><%= game.p1_score %></td>
+    <td><%= game.p2_score %></td>
     <td>
       <form method='post' action='/admin/game/<%= game.id %>/delete'>
         <input type="submit" value="Delete">
