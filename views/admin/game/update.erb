@@ -1,0 +1,24 @@
+<div id='game-update-admin'>
+  <h1>Update Game</h1>
+
+  <form method='post' action='/admin/game/<%= @game.id %>/update'>
+    
+    <table>
+      <tr>
+        <th><%= @player1.p_name %> Score</th>
+        <th><%= @player2.p_name %> Score</th>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="p1_score" value='<%= @game.p1_score %>'>
+        </td>
+        <td>
+          <input type="text" name="p2_score" value='<%= @game.p2_score %>'>
+        </td>
+      </tr>
+    </table>
+
+   <input type='submit' value='Update Game'>
+  </form>
+
+</div>

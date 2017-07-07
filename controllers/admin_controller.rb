@@ -11,7 +11,7 @@ enable :sessions
 ##ADMIN
 #LOG IN
 get '/admin/login' do
-  erb(:'admin/login')
+  erb(:'admin/login', :layout => :layout_admin)
 end
 
 post '/admin/login' do
@@ -22,16 +22,14 @@ post '/admin/login' do
   else
     @message = "Sorry, incorrect password"
   end
-  erb(:'admin/login_res')
+  erb(:'admin/login_res', :layout => :layout_admin)
 end
 
 #PLAYER
-
 get '/admin/player/index' do
   @players = Player.all
-
   if (session[:admin] = 'admin')
-    erb(:'admin/player/index')      
+    erb(:'admin/player/index', :layout => :layout_admin)      
   else
     redirect '/admin/login'
   end
@@ -39,10 +37,65 @@ end
 
 get '/admin/player/:pid/update' do
   @player = Player.find_by_id(params[:pid])
-  erb(:'admin/player/update')
+  @orgs = Organisation.all()
+  @groups = Group.all()  
+  if (session[:admin] = 'admin')
+    erb(:'admin/player/update', :layout => :layout_admin)
+  else
+    redirect '/admin/login'
+  end
+end
+
+post '/admin/player/:id/update' do
+  @player = Player.new(params)
+  @player.update() 
+  #make previous page only show past added org/groups of the player, not all available as in future that list may be too long, and have another screen to add a 'new' org/group that displays all available and can delete from those that already exist
+  redirect '/admin/player/index'
 end
 
 post '/admin/player/:pid/delete' do
-  Player.delete(params[:pid])
-  redirect 'admin/player/index'
+  if (session[:admin] = 'admin')
+    Player.delete(params[:pid])
+    redirect 'admin/player/index'
+  else
+    redirect '/admin/login'
+  end
+end
+
+#GAME
+get '/admin/game/index' do
+  @games = Game.all()
+    if (session[:admin] = 'admin')
+      erb(:'admin/game/index', :layout => :layout_admin)      
+    else
+      redirect '/admin/login'
+    end
+end
+
+get '/admin/game/:gid/update' do
+  @game = Game.find_by_id(params[:gid])
+  @player1 = Player.find_by_id(@game.p1_id)
+  @player2 = Player.find_by_id(@game.p2_id)
+  if (session[:admin] = 'admin')
+    erb(:'admin/game/update', :layout => :layout_admin)
+  else
+    redirect '/admin/login'
+  end
+end
+
+post '/admin/game/:gid/update' do
+  @game = Game.find_by_id(params[:gid])
+  @game.p1_score = params[:p1_score].to_i
+  @game.p2_score = params[:p2_score].to_i 
+  @game.update() 
+  redirect '/admin/game/index'
+end
+
+post '/admin/game/:gid/delete' do
+  if (session[:admin] = 'admin')
+    Game.delete(params[:gid])
+    redirect 'admin/game/index'
+  else
+    redirect '/admin/login'
+  end
 end

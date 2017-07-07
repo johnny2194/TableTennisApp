@@ -1,0 +1,36 @@
+<div id='all-games-admin'>
+  
+<h1>Admin: All Games</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>P1 Name</th> 
+    <th>P2 Name</th>
+    <th>P1 Score</th>
+    <th>P2 Score</th>
+    <th>Delete</th>
+    <th>Update</th>
+  </tr>
+  <tr>
+  <% @games.each do |game| %>
+    <td><%= game.id %></td>
+    <td><%= Player.find_name_by_id(game.p1_id) %></td>
+    <td><%= Player.find_name_by_id(game.p2_id) %></td> 
+    <td><%= game.p1_score %></td>
+    <td><%= game.p2_score %></td>
+    <td>
+      <form method='post' action='/admin/game/<%= game.id %>/delete'>
+        <input type="submit" value="Delete">
+      </form>
+  </td>
+  <td>
+      <form method='get' action='/admin/game/<%= game.id %>/update'>
+        <input type="submit" value="Update">
+      </form>
+  </td>
+  </tr>
+  <% end %>
+</table>
+
+</div>

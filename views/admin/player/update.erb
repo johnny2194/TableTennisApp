@@ -1,7 +1,43 @@
 <div id='player-update-admin'>
 <h1>Update Player</h1>
 
-  
+  <form method='post' action='/admin/player/<%= @player.id %>/update'>
+    
+    <label for='player-name'>Name:</label>
+    <input required type='text' name='p_name' value='<%= @player.p_name %>'>
+    <br>
+<!-- use radio buttons to only select from previously added orgs/groups -->
+    <label for='player-primary-org'>Primary Organisation:</label>
+    <select name='primary_org_id'>
+      <%  @orgs.each do |org| %>
+      <option 
+      <% if @player.primary_org_id == org.id %>
+        selected
+      <% end %> 
+      value='<%= org.id %>'><%= org.o_name %></option>
+      <% end %> 
+    </select>
+    <br>
+
+    <label for='player-primary-group'>Primary Group:</label>
+    <select name="primary_group_id">
+      <% @groups.each do |group| %>
+      <option 
+      <% if @player.primary_group_id == group.id %>
+        selected
+      <% end %>
+      value='<%= group.id %>'><%= group.g_name  %></option>
+      <% end %>
+    </select>
+    <br>
+
+  <input hidden type="text" name="rating" value:<%= @player.rating %>>
+
+  <input hidden type="text" name="picture" value:<%= @player.picture %>>
+
+
+   <input type='submit' value='Update Player'>
+  </form>
 
 </div>
 

@@ -33,6 +33,28 @@ class Player
     SqlRunner.run(sql3)
   end
 
+  def update()
+    sql1 = "UPDATE players SET (p_name, rating, picture, primary_org_id, primary_group_id) = ('#{@p_name}', #{@rating}, '#{@picture}', #{@primary_org_id}, #{@primary_group_id}) WHERE id = #{self.id}"
+    SqlRunner.run(sql1)
+#checks if row already exists
+    sql2 = "SELECT * FROM pl_group_join WHERE p_id = #{self.id} AND group_id = #{self.primary_group_id}"
+    previous_groups_pg = SqlRunner.run(sql2)
+
+    sql3 = "INSERT INTO pl_group_join 
+    (p_id, group_id) VALUES (#{@id}, #{@primary_group_id})"
+#only inserts if it doesn't exist:
+    SqlRunner.run(sql3) if (previous_groups_pg.first == nil)
+
+#checks if row already exists
+    sql4 = "SELECT * FROM pl_org_join WHERE p_id = #{self.id} AND org_id = #{self.primary_org_id}"
+    previous_orgs_pg = SqlRunner.run(sql4)
+
+    sql5 = "INSERT INTO pl_org_join
+    (p_id, org_id) VALUES (#{@id}, #{@primary_org_id})"
+#only inserts if it doesn't exist:    
+    SqlRunner.run(sql5) if (previous_orgs_pg.first == nil)
+  end
+
   def join_group(group)
     sql = "INSERT INTO pl_group_join (p_id, group_id) VALUES (#{@id}, #{group.id})"
     SqlRunner.run(sql)
@@ -181,7 +203,14 @@ class Player
 
   def self.find_by_id(id)
     sql = "SELECT * FROM players WHERE id = #{id}"
-    return Player.map_players(sql)
+    return Player.map_players(sql)[0]
+  end
+
+  def self.find_name_by_id(id)
+    sql = "SELECT p_name FROM players WHERE id=#{id}"
+    play_pg = SqlRunner.run(sql)
+    play_name = play_pg.first['p_name']
+    return play_name
   end
 
   ## Helper
